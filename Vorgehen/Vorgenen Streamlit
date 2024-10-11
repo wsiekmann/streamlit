@@ -1,10 +1,29 @@
 https://wsiekmann-streamlit-tableversuch-phbgrf.streamlit.app/
 
+zu Exe:
+
+Hallo allerseits Mein erster Beitrag hier. Deshalb habe ich kürzlich einen Weg gefunden, eine Streamlit-App als ausführbare Windows- oder Mac OS-Datei zu erstellen. Hier sind die Schritte:
+
+Stellen Sie Ihre Streamlit-App mithilfe der Streamlit-Freigabe bereit und notieren Sie diese URL beispielsweise:
+https://share.streamlit.io/the-ml-hero/dentaldiagnosistools/main/app.py 3,0k
+Dann installieren Sie Nativefier npm install -g nativefier
+Dann lauf nativefier --name '<you .exe name>' '<your streamlit sharing website url>' --platform <'windows' or 'mac' or 'linux'>
+Dann sollten Sie in Ihrem aktuellen Verzeichnis sehen <AppName>-32-x64 Ordner oder ähnliches, wenn Sie Windows ausgewählt haben, führen Sie die EXE-Datei aus und Sie haben Ihre Software.
+Wenn Sie unten Probleme oder Abfragen haben, werde ich mein Bestes geben, um sie zu beantworten, wenn ich Zeit habe. Vielen Dank!
+
 
 nativefier --name '<you .exe name>' '<your streamlit sharing website url>' --platform <'windows' or 'mac' or 'linux'>
-
-
 nativefier --name 'Test.exe' 'https://wsiekmann-streamlit-tableversuch-phbgrf.streamlit.app/' --platform 'windows' 
-
-
 npm install -g nativefier
+funktioniert noch nicht. 11.10.2024
+
+
+
+
+
+Beim Streamlit Deploy ist es wichtig eine Datei requirements.txt im Ordner zu haben. Inhalt im Falle aggrid = streamlit-aggrid
+
+
+
+Page wide = als erste Zeile :
+st.set_page_config(layout="wide")

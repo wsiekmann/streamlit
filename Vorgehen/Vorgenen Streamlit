@@ -27,3 +27,18 @@ Beim Streamlit Deploy ist es wichtig eine Datei requirements.txt im Ordner zu ha
 
 Page wide = als erste Zeile :
 st.set_page_config(layout="wide")
+
+Streamlit Buttons unsichtbar machen:
+
+st.markdown(
+    r"""
+    <style>
+    .st-emotion-cache-1wbqy5l.e17vllj40 {
+            visibility: hidden;
+        }
+    .eyeqlp53.st-emotion-cache-1pbsqtx.ex0cdmw0 {
+            visibility: hidden;
+        }
+    </style>
+    """, unsafe_allow_html=True
+)

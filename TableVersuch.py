@@ -4,6 +4,21 @@ from st_aggrid import AgGrid, GridUpdateMode
 from st_aggrid.grid_options_builder import GridOptionsBuilder
 
 st.set_page_config(layout="wide")
+st.markdown(
+    r"""
+    <style>
+    .st-emotion-cache-1wbqy5l.e17vllj40 {
+            visibility: hidden;
+        }
+    .eyeqlp53.st-emotion-cache-1pbsqtx.ex0cdmw0 {
+            visibility: hidden;
+        }
+    </style>
+    """, unsafe_allow_html=True
+)
+
+
+
 
 #@st.cache_resource
 def data_upload():
@@ -18,6 +33,8 @@ st.info(len(df))
 
 
 _funct =st.sidebar.radio(label="Test",options=["1","2"])
+_sliderValue = st.sidebar.slider(label="Testslider",max_value=100, value= 50)
+print(_sliderValue)
 
 if _funct == "1":
     print (_funct)
@@ -38,3 +55,5 @@ grid_table = AgGrid(
 sel_rows = grid_table["selected_rows"]
 st.subheader("selektierte Ausgabe:")
 st.write(sel_rows)
+
+

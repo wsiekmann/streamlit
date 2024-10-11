@@ -27,4 +27,4 @@ print(val)
 bar = st.progress(0)
 for i in range(10):
     bar.progress((i +1) *10)
-    time.sleep(1.5)
+    time.sleep(0.1)

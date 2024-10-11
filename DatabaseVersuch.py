@@ -10,7 +10,7 @@ def formCreation():
     with st.form(key= "Reg Form"):
         surname = st.text_input("Vorname: ")
         lastname = st.text_input("Nachname: ")
-        age = st.text_input("Alter: ")
+        age = st.date_input("Alter: ",format="DD.MM.YYYY")
         country = st.text_input("Land: ")
         birthcountry = st.text_input("Geburtsland: ")
         submit = st.form_submit_button(label = "Übernahme")

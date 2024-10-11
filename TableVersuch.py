@@ -75,14 +75,18 @@ df = data_upload()
 st.dataframe(data=df)
 st.info(len(df))
 
-
-
-_funct =st.sidebar.radio(label="Test",options=["1","2"],horizontal=True)
-_sliderValue = st.sidebar.slider(label="Testslider",max_value=100, value= 50)
-print(_sliderValue)
-
-if _funct == "1":
+def slider_change():
+    print(_sliderValue)
+    
+def radio_change():
     print (_funct)
+
+_funct =st.sidebar.radio(label="Test",options=["1","2"],horizontal=True,on_change=radio_change)
+_sliderValue = st.sidebar.slider(label="Testslider",max_value=100, value= 50, help="Help",on_change=slider_change)
+
+
+# if _funct == "1":
+#     print (_funct)
 
 st.header("AgGrid")
 gd = GridOptionsBuilder.from_dataframe(df)

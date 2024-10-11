@@ -77,7 +77,7 @@ st.info(len(df))
 
 
 
-_funct =st.sidebar.radio(label="Test",options=["1","2"])
+_funct =st.sidebar.radio(label="Test",options=["1","2"],horizontal=True)
 _sliderValue = st.sidebar.slider(label="Testslider",max_value=100, value= 50)
 print(_sliderValue)
 

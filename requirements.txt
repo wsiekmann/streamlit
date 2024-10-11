@@ -1,3 +1,2 @@
 streamlit-aggrid
-M2Crypto
-pyOpenSSL
+

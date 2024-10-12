@@ -16,8 +16,12 @@ def formCreation():
         submit = st.form_submit_button(label = "Übernahme")
         
         if submit == True:
-            st.success("Übernommen")
+            st.toast("Übernommen")
             addinfo(surname,lastname,age,country,birthcountry)
+    cclose = st.button("Connection Close")        
+    if cclose == True:
+        st.toast("Connection close") 
+        #closeConnection()  
             
 def addinfo(a,b,c,d,e):
     cursor.execute(
@@ -25,7 +29,24 @@ def addinfo(a,b,c,d,e):
     )
     cursor.execute("INSERT INTO testformreg VALUES (?,?,?,?,?) ", (a,b,c,d,e))
     conn.commit()
+    #conn.close()
+    st.toast('in SQLITE DB gesichert',icon='😍')
+    
+    
+def getinfo() -> list:
+    cursor.execute(
+    """SELECT * FROM testformreg"""
+    )
+    data = cursor.fetchall()
+    return data
+
+def closeConnection():
     conn.close()
-    st.success('in SQLITE DB gesichert')
+    
+    
+    
     
 formCreation()
+st.dataframe(getinfo())
+closeConnection()
+

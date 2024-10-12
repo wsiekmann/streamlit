@@ -2,8 +2,7 @@ import streamlit as st
 import pandas as pd
 from st_aggrid import AgGrid, GridUpdateMode
 from st_aggrid.grid_options_builder import GridOptionsBuilder
-#import base64, M2Crypto
-#import uuid, OpenSSL
+
 import secrets
 import datetime as dt
 
@@ -37,12 +36,12 @@ if 'sessiontoken' not in st.session_state:
     st.session_state.sessiontoken = ""
     
 
-a: list 
+body_top: list 
 if st.session_state.sessiontoken == "":
     st.session_state.sessiontoken  = make_token() #uuid.UUID(bytes = OpenSSL.rand.bytes(16))       
     print("[" + dt.datetime.now().strftime("%d.%m.%Y %H:%M:%S") + "] sessionstart -- " + st.session_state.sessiontoken )
-a = st.columns(3)    
-a[2].write("sessiontoken: " + st.session_state.sessiontoken)
+body_top = st.columns(3)    
+body_top[2].write("sessiontoken: " + st.session_state.sessiontoken)
 
 
 
@@ -57,9 +56,9 @@ def vote(item):
 
 if "vote" not in st.session_state:
     st.write("Vote for your favorite")
-    if st.button("A"):
+    if st.button("A",icon= ":material/done_outline:"):
         vote("A")
-    if st.button("B"):
+    if st.button("B",icon= ":material/copyright:"):
         vote("B")
 else:
     f"You voted for {st.session_state.vote['item']} because {st.session_state.vote['reason']}"
@@ -75,16 +74,50 @@ df = data_upload()
 st.dataframe(data=df)
 st.info(len(df))
 
-def slider_change():
-    print(_sliderValue)
+# slider_readValue = False
+# def slider_change():
+#     #nonlocal slider_readValue
+#     slider_readValue = True
+#     #st.balloons()
     
 def radio_change():
     print (_funct)
 
 _funct =st.sidebar.radio(label="Test",options=["1","2"],horizontal=True,on_change=radio_change)
-_sliderValue = st.sidebar.slider(label="Testslider",max_value=100, value= 50, help="Help",on_change=slider_change)
+_sliderValue = st.sidebar.slider(label="Testslider", value= dt.datetime(2020, 1, 1, 0, 0),
+    max_value= dt.datetime(2024, 1, 1, 9, 30),
+    format="DD.MM.YY - hh:mm", help="Help me",step=dt.timedelta(minutes=60)
+    )
 
+# if '_sliderValue' not in st.session_state:
+#     st.session_state._sliderValue = dt.datetime(1010,1,1,0,0,0)
+# if st.session_state._sliderValue != dt.datetime(1010,1,1,0,0,0):
 
+#print(_sliderValue.strftime("%d.%m.%Y %H:%M:%S"))
+
+body_middle = st.columns(5)  
+
+# if 'numberin' not in st.session_state:
+#     st.session_state.numberin = [0,0,0,0,0,0,0]
+#output: int
+#numberin = [0,0,0,0,0,0,0]
+if 'numberin' not in st.session_state:
+    st.session_state.numberin = 10
+
+# def input(value):
+#     print(value)
+    #print(st.session_state.numberin[i])
+    #output = i
+
+st.session_state.numberin = body_middle[0].number_input("Input" + str(0),value=st.session_state.numberin )
+body_middle[1].write("Wert: " + str(st.session_state.numberin))
+body_middle[2].write("???")
+
+# for i in range(7):
+#     numberin[i] = body_middle[i].number_input("Input" + str(i),key="in" + str(i),on_change=input(numberin[i]))
+
+# if output >=0 and output <=6:
+#     print(st.session_state.numberin[output])
 # if _funct == "1":
 #     print (_funct)
 

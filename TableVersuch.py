@@ -7,7 +7,7 @@ import secrets
 import datetime as dt
 
 
-st.set_page_config(layout="wide")
+st.set_page_config(layout="wide",page_icon=":tangerine:")
 st.markdown(
     r"""
     <style>
@@ -44,7 +44,7 @@ body_top = st.columns(3)
 body_top[2].write("sessiontoken: " + st.session_state.sessiontoken)
 
 
-
+rowdialog = st.columns(10,gap="small")
 #st.dialog()
 @st.dialog("Cast your vote")
 def vote(item):
@@ -56,9 +56,9 @@ def vote(item):
 
 if "vote" not in st.session_state:
     st.write("Vote for your favorite")
-    if st.button("A",icon= ":material/done_outline:"):
+    if rowdialog[0].button("A",icon= ":material/done_outline:"):
         vote("A")
-    if st.button("B",icon= ":material/copyright:"):
+    if rowdialog[1].button("B",icon= ":material/copyright:"):
         vote("B")
 else:
     f"You voted for {st.session_state.vote['item']} because {st.session_state.vote['reason']}"
@@ -109,7 +109,7 @@ if 'numberin' not in st.session_state:
     #print(st.session_state.numberin[i])
     #output = i
 
-st.session_state.numberin = body_middle[0].number_input("Input" + str(0),value=st.session_state.numberin )
+st.session_state.numberin = body_middle[0].number_input("Input" + str(0),step=1.0)  #,value=st.session_state.numberin
 body_middle[1].write("Wert: " + str(st.session_state.numberin))
 body_middle[2].write("???")
 

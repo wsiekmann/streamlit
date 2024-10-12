@@ -12,7 +12,9 @@ def openConnection() -> any:
     cursor = conn.cursor()
     return conn,cursor
 
+
 conn,cursor = openConnection()
+print (conn, cursor)
 
 @st.dialog("WE-Arbeit")
 def formCreation():
@@ -61,5 +63,5 @@ if st.button("WE-Arbeit eintragen"):
     #openConnection()
     formCreation()
 st.dataframe(getinfo())
-#closeConnection()
+closeConnection()
 

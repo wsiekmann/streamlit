@@ -5,6 +5,7 @@ import sqlite3
 conn = sqlite3.connect('form.db',check_same_thread=False)
 cursor = conn.cursor()
 
+@st.dialog("WE-Arbeit")
 def formCreation():
     st.write('Bitte ausfüllen')
     with st.form(key= "Reg Form"):
@@ -21,7 +22,7 @@ def formCreation():
     cclose = st.button("Connection Close")        
     if cclose == True:
         st.toast("Connection close") 
-        #closeConnection()  
+        closeConnection()  
             
 def addinfo(a,b,c,d,e):
     cursor.execute(
@@ -42,11 +43,12 @@ def getinfo() -> list:
 
 def closeConnection():
     conn.close()
+    st.toast("Connection close") 
     
     
     
-    
-formCreation()
+if st.button("WE-Arbeit eintragen"):
+    formCreation()
 st.dataframe(getinfo())
 closeConnection()
 

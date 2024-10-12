@@ -2,13 +2,22 @@ import streamlit as st
 import time
 import sqlite3
 
-conn = sqlite3.connect('form.db',check_same_thread=False)
-cursor = conn.cursor()
+st.set_page_config(layout="wide",page_icon=":tangerine:")
+#global conn
+#global cursor
+
+
+def openConnection() -> any:
+    conn = sqlite3.connect('form.db',check_same_thread=False)
+    cursor = conn.cursor()
+    return conn,cursor
+
+conn,cursor = openConnection()
 
 @st.dialog("WE-Arbeit")
 def formCreation():
     st.write('Bitte ausfüllen')
-    with st.form(key= "Reg Form"):
+    with st.form(key= "Reg Form",clear_on_submit=True):
         surname = st.text_input("Vorname: ")
         lastname = st.text_input("Nachname: ")
         age = st.date_input("Alter: ",format="DD.MM.YYYY")
@@ -19,6 +28,7 @@ def formCreation():
         if submit == True:
             st.toast("Übernommen")
             addinfo(surname,lastname,age,country,birthcountry)
+            
     cclose = st.button("Connection Close")        
     if cclose == True:
         st.toast("Connection close") 
@@ -48,7 +58,8 @@ def closeConnection():
     
     
 if st.button("WE-Arbeit eintragen"):
+    #openConnection()
     formCreation()
 st.dataframe(getinfo())
-closeConnection()
+#closeConnection()
 
